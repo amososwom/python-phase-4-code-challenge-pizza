@@ -34,9 +34,17 @@ class Restaurants(Resource):
             }
             for restaurant in restaurants
         ]
+
+        headers = {
+        'Content-Type': 'application/json',
+        'X-Custom-Header': 'CustomValue',
+        'Cache-Control': 'no-cache'
+        }
+        
         response = make_response(
             jsonify(my_restaurant_list),
-            200
+            200, 
+            headers
         )
         return response
 
@@ -47,9 +55,17 @@ class RestaurantById(Resource):
         restaurant = Restaurant.query.filter_by(id=id).first()
         
         if restaurant:
+
+            headers = {
+            'Content-Type': 'application/json',
+            'X-Custom-Header': 'CustomValue',
+            'Cache-Control': 'no-cache'
+            }
+                    
             response = make_response(
                 restaurant.to_dict(),
-                200
+                200,
+                headers
             )
             return response
         else:

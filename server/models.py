@@ -35,6 +35,7 @@ class Pizza(db.Model, SerializerMixin):
     name = db.Column(db.String)
     ingredients = db.Column(db.String)
 
+
     restaurants = relationship("RestaurantPizza", back_populates="pizza", cascade="all, delete-orphan")
 
     def to_dict(self):
