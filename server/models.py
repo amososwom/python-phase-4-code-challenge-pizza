@@ -11,6 +11,7 @@ metadata = MetaData(
 
 db = SQLAlchemy(metadata=metadata)
 
+
 class Restaurant(db.Model, SerializerMixin):
     __tablename__ = "restaurants"
 
@@ -28,6 +29,7 @@ class Restaurant(db.Model, SerializerMixin):
             "restaurant_pizzas": [pizza.to_dict() for pizza in self.pizzas]
         }
 
+
 class Pizza(db.Model, SerializerMixin):
     __tablename__ = "pizzas"
 
@@ -44,6 +46,7 @@ class Pizza(db.Model, SerializerMixin):
             "name": self.name,
             "ingredients": self.ingredients
         }
+
 
 class RestaurantPizza(db.Model, SerializerMixin):
     __tablename__ = "restaurant_pizzas"
