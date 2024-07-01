@@ -110,9 +110,16 @@ class Pizzas(Resource):
             }
             for pizza in my_pizzas
         ]
+
+        headers = {
+        'Content-Type': 'application/json',
+        'X-Custom-Header': 'CustomValue',
+        'Cache-Control': 'no-cache'
+        }
         response = make_response(
             jsonify(my_pizza_list),
-            200
+            200,
+            headers
         )
         return response
 
@@ -132,9 +139,16 @@ class RestaurantPizzas(Resource):
                 "errors": ["validation errors"]
             }
             response = jsonify(error_message)
+            headers = {
+            'Content-Type': 'application/json',
+            'X-Custom-Header': 'CustomValue'
+            }
+
+            
             return make_response(
                 response,
-                400
+                400,
+                headers
             )
 
         response_dict = new_pizza.to_dict()
